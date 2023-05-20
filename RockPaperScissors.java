@@ -8,14 +8,15 @@ public class RockPaperScissors {
         final String ROCK = "Rock";
         final String PAPER = "Paper";
         final String SCISSORS = "Scissors";
-        int totalPlayerResult = 0;
-        int totalComputerResult = 0;
+        int playerScore = 0;
+        int computerScore = 0;
+        System.out.println("Enter player name: ");
+        String name = scanner.nextLine();
         printBeginning();
 
         String command = scanner.nextLine();
         while (!command.equals("end") && !command.equals("e")) {
-            int playerResult = 0;
-            int computerResult = 0;
+
             String playerMove = command;
             while (!isValidMove(playerMove)) {
                 System.out.println("Invalid input. Try again....");
@@ -29,7 +30,7 @@ public class RockPaperScissors {
             } else if (playerMove.equals("s") || playerMove.equals("scissors")) {
                 playerMove = SCISSORS;
             }
-            System.out.printf("You chose %s\n", playerMove);
+            System.out.printf("%s chose %s\n",name, playerMove);
             Random random = new Random();
             int randomNumber = random.nextInt(3);
             String computerMove = "";
@@ -45,37 +46,42 @@ public class RockPaperScissors {
                 System.out.println("This game was a draw!");
             } else if (playerMove.equals(ROCK)) {
                 if (computerMove.equals(PAPER)) {
-                    System.out.println("You lose! ");
-                    computerResult++;
+                    System.out.printf("%s lose!\n", name);
+                    computerScore++;
                 } else  {
-                    System.out.println("You win!");
-                    playerResult++;
+                    System.out.printf("%s win!\n", name);
+                    playerScore++;
                 }
             } else if (playerMove.equals(PAPER)) {
                 if (computerMove.equals(ROCK)) {
-                    System.out.println("You win!");
-                    playerResult++;
+                    System.out.printf("%s win!\n", name);
+                    playerScore++;
                 } else {
-                    System.out.println("You lose!");
-                    computerResult++;
+                    System.out.printf("%s lose!\n", name);
+                    computerScore++;
                 }
             } else if (playerMove.equals(SCISSORS)) {
                 if (computerMove.equals(ROCK)) {
-                    System.out.println("You lose!");
-                    computerResult++;
+                    System.out.printf("%s lose!\n", name);
+                    computerScore++;
                 } else {
-                    System.out.println("You win! ");
-                    playerResult++;
+                    System.out.printf("%s win!\n", name);
+                    playerScore++;
                 }
             }
-            totalPlayerResult += playerResult;
-            totalComputerResult += computerResult;
-            System.out.printf("Result: \nYou - %d : Computer - %d\n", playerResult, computerResult);
+            System.out.printf("%s - %d : Computer - %d\n", name, playerScore, computerScore);
             System.out.println("--------------------------------------------------------------------");
             printBeginning();
             command = scanner.nextLine();
         }
-        System.out.printf("Total result: \nYou - %d : Computer - %d\n", totalPlayerResult, totalComputerResult);
+        if (playerScore > computerScore) {
+            System.out.println("VICTORY");
+        } else if (computerScore > playerScore) {
+            System.out.println("LOSS");
+        } else {
+            System.out.println("DRAW");
+        }
+        System.out.printf("Total score: \n%s - %d : Computer - %d\n",name, playerScore, computerScore);
     }
 
     public static void printBeginning() {
