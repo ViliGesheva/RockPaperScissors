@@ -79,7 +79,7 @@ public class RockPaperScissors {
         } else if (computerScore > playerScore) {
             System.out.println("LOSS");
         } else {
-            System.out.println("DRAW");
+            System.out.println("EQUALITY");
         }
         System.out.printf("Total score: \n%s - %d : Computer - %d\n",name, playerScore, computerScore);
     }
