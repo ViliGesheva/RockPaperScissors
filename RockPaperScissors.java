@@ -11,8 +11,9 @@ public class RockPaperScissors {
         int totalPlayerResult = 0;
         int totalComputerResult = 0;
         printBeginning();
+
         String command = scanner.nextLine();
-        while (!command.equals("end")) {
+        while (!command.equals("end") && !command.equals("e")) {
             int playerResult = 0;
             int computerResult = 0;
             String playerMove = command;
@@ -78,7 +79,9 @@ public class RockPaperScissors {
     }
 
     public static void printBeginning() {
+        System.out.println("To end the game enter \"[e]nd\"");
         System.out.println("Choose [r]ock, [p]aper or [s]cissors: ");
+
     }
 
     public static boolean isValidMove(String move) {
