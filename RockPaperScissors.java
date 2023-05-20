@@ -79,7 +79,7 @@ public class RockPaperScissors {
     }
 
     public static void printBeginning() {
-        System.out.println("To end the game enter \"[e]nd\"");
+        System.out.println("\"To end the game enter [e]nd\"");
         System.out.println("Choose [r]ock, [p]aper or [s]cissors: ");
 
     }
