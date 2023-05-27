@@ -8,19 +8,17 @@ public class RockPaperScissors {
         final String ROCK = "Rock";
         final String PAPER = "Paper";
         final String SCISSORS = "Scissors";
-        int playerScore = 0;
-        int computerScore = 0;
         System.out.println("Enter player name: ");
         String name = scanner.nextLine();
         printBeginning();
-
+        int playerScore = 0;
+        int computerScore = 0;
         String command = scanner.nextLine();
         while (!command.equals("end") && !command.equals("e")) {
-
             String playerMove = command;
             while (!isValidMove(playerMove)) {
                 System.out.println("Invalid input. Try again....");
-                printBeginning();
+                System.out.println("Choose [r]ock, [p]aper or [s]cissors: ");
                 playerMove = scanner.nextLine();
             }
             if (playerMove.equals("r") || playerMove.equals("rock")) {
@@ -30,7 +28,7 @@ public class RockPaperScissors {
             } else if (playerMove.equals("s") || playerMove.equals("scissors")) {
                 playerMove = SCISSORS;
             }
-            System.out.printf("%s chose %s\n",name, playerMove);
+            System.out.printf("%s chose %s\n", name, playerMove);
             Random random = new Random();
             int randomNumber = random.nextInt(3);
             String computerMove = "";
@@ -38,7 +36,7 @@ public class RockPaperScissors {
                 computerMove = ROCK;
             } else if (randomNumber == 1) {
                 computerMove = PAPER;
-            } else  {
+            } else {
                 computerMove = SCISSORS;
             }
             System.out.printf("Computer chose %s\n", computerMove);
@@ -48,7 +46,7 @@ public class RockPaperScissors {
                 if (computerMove.equals(PAPER)) {
                     System.out.printf("%s lose!\n", name);
                     computerScore++;
-                } else  {
+                } else {
                     System.out.printf("%s win!\n", name);
                     playerScore++;
                 }
@@ -69,20 +67,28 @@ public class RockPaperScissors {
                     playerScore++;
                 }
             }
-            System.out.printf("%s - %d : Computer - %d\n", name, playerScore, computerScore);
+            System.out.printf("%s  %d : %d Computer\n", name, playerScore, computerScore);
             System.out.println("--------------------------------------------------------------------");
             printBeginning();
             command = scanner.nextLine();
         }
-        if (playerScore > computerScore) {
-            System.out.println("VICTORY");
-        } else if (computerScore > playerScore) {
-            System.out.println("LOSS");
-        } else {
-            System.out.println("EQUALITY");
-        }
-        System.out.printf("Total score: \n%s - %d : Computer - %d\n",name, playerScore, computerScore);
+        System.out.printf("Final score:\n%s - %d\nComputer - %d", name, playerScore, computerScore);
     }
+
+    public static void printBeginning() {
+        System.out.println("\"To end the game enter [e]nd\"");
+        System.out.println("Choose [r]ock, [p]aper or [s]cissors: ");
+
+    }
+
+    public static boolean isValidMove(String move) {
+        boolean isValidMove = false;
+        if (move.equals("r") || move.equals("rock") || move.equals("s") || move.equals("scissors") || move.equals("p") || move.equals("paper")) {
+            isValidMove = true;
+        }
+        return isValidMove;
+    }
+    
 
     public static void printBeginning() {
         System.out.println("\"To end the game enter [e]nd\"");
